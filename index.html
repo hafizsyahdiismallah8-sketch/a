@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portofolio Biografi — Azie &amp; Hafiz</title>
+  <meta name="description" content="Website portofolio dan biografi pribadi Azie dan Hafiz, mahasiswa Teknik Informatika Tanri Abeng University." />
+  <style>
+    :root {
+      --bg: #ffffff;
+      --text: #111827;
+      --muted: #475569;
+      --line: rgba(15, 23, 42, 0.10);
+      --line-soft: rgba(15, 23, 42, 0.06);
+      --shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
+      --shadow-sm: 0 10px 24px rgba(15, 23, 42, 0.05);
+      --radius: 24px;
+      --surface: linear-gradient(145deg, rgba(255,255,255,0.98), rgba(248,250,252,0.94), rgba(255,255,255,0.98));
+      --surface-strong: linear-gradient(145deg, #ffffff, #f1f5f9);
+      --surface-soft: linear-gradient(145deg, #ffffff, #f8fafc);
+      --white-gradient: linear-gradient(135deg, #ffffff 0%, #f8fafc 25%, #f1f5f9 50%, #ffffff 75%, #f8fafc 100%);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+      background:
+        radial-gradient(circle at 10% 10%, rgba(255,255,255,0.95), transparent 35%),
+        radial-gradient(circle at 90% 20%, rgba(248,250,252,0.95), transparent 30%),
+        radial-gradient(circle at 50% 80%, rgba(241,245,249,0.85), transparent 32%),
+        var(--white-gradient);
+      background-attachment: fixed;
+    }
+    a { color: inherit; text-decoration: none; }
+    ::selection { background: rgba(15,23,42,0.10); color: var(--text); }
+    .container { width: min(1120px, 92%); margin-inline: auto; }
+    .skip-link { position: absolute; left: -999px; top: 0; background: var(--text); color: #fff; padding: 10px 16px; border-radius: 0 0 12px 0; z-index: 1000; }
+    .skip-link:focus { left: 0; }
+    .navbar { position: fixed; inset: 0 0 auto 0; z-index: 50; backdrop-filter: blur(16px); background: linear-gradient(180deg, rgba(255,255,255,0.96), rgba(248,250,252,0.88)); border-bottom: 1px solid transparent; transition: 0.3s; }
+    .navbar.scrolled { border-bottom-color: var(--line); background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(248,250,252,0.94)); box-shadow: 0 8px 24px rgba(15,23,42,0.05); }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 72px; }
+    .brand { display: flex; align-items: center; gap: 12px; font-weight: 800; color: var(--text); }
+    .brand-mark { width: 40px; height: 40px; border-radius: 14px; display: grid; place-items: center; background: var(--white-gradient); color: var(--text); font-weight: 900; border: 1px solid var(--line); box-shadow: var(--shadow-sm); }
+    .nav-menu { display: flex; align-items: center; gap: 8px; }
+    .nav-menu a { padding: 10px 14px; border-radius: 999px; color: var(--muted); font-weight: 650; transition: 0.25s; }
+    .nav-menu a:hover, .nav-menu a.active { color: var(--text); background: var(--surface-strong); box-shadow: inset 0 0 0 1px var(--line-soft); }
+    .menu-toggle { display: none; width: 44px; height: 44px; border: 1px solid var(--line); background: var(--surface-strong); color: var(--text); border-radius: 14px; font-size: 1.2rem; cursor: pointer; box-shadow: var(--shadow-sm); }
+    .hero { padding: 140px 0 80px; min-height: 100svh; display: flex; align-items: center; }
+    .hero-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 40px; align-items: center; }
+    .badge { display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface-soft); color: var(--text); font-weight: 750; letter-spacing: 0.08em; text-transform: uppercase; font-size: 0.78rem; box-shadow: var(--shadow-sm); }
+    .hero h1 { margin: 18px 0 10px; font-size: clamp(2.6rem, 7vw, 5.2rem); line-height: 0.95; letter-spacing: -0.05em; text-transform: uppercase; color: var(--text); }
+    .gradient-text { background: linear-gradient(90deg, #111827, #334155, #111827); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .hero .lead { font-size: clamp(1.15rem, 2.4vw, 1.6rem); font-weight: 850; margin: 0 0 6px; color: var(--text); }
+    .hero .institution { color: #334155; font-weight: 750; margin: 0 0 18px; }
+    .hero .desc { max-width: 650px; color: var(--muted); margin: 0 0 28px; font-size: 1.05rem; }
+    .action-row { display: flex; flex-wrap: wrap; gap: 14px; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 48px; padding: 12px 22px; border-radius: 999px; font-weight: 800; border: 1px solid transparent; cursor: pointer; transition: 0.25s; }
+    .btn:focus-visible, a:focus-visible, button:focus-visible { outline: 3px solid rgba(15,23,42,0.16); outline-offset: 3px; }
+    .btn-primary { background: var(--white-gradient); color: var(--text); border-color: var(--line); box-shadow: var(--shadow); }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 20px 48px rgba(15,23,42,0.12); }
+    .btn-secondary { background: var(--surface-strong); border-color: var(--line); color: var(--text); box-shadow: var(--shadow-sm); }
+    .btn-secondary:hover { background: var(--surface); transform: translateY(-2px); }
+    .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 34px; }
+    .stat { padding: 16px; border-radius: 18px; background: var(--surface); border: 1px solid var(--line); box-shadow: var(--shadow-sm); }
+    .stat strong { display: block; font-size: 1.35rem; color: var(--text); }
+    .stat span { color: var(--muted); font-size: 0.9rem; }
+    .hero-visual { position: relative; min-height: 460px; display: grid; place-items: center; }
+    .glow-ring { position: absolute; width: 360px; height: 360px; border-radius: 50%; border: 1px dashed rgba(15,23,42,0.12); animation: spin 24s linear infinite; }
+    .glow-ring::before { content: ""; position: absolute; inset: 35px; border-radius: 50%; border: 1px solid rgba(15,23,42,0.08); }
+    .float-card { position: absolute; width: 170px; padding: 18px; border-radius: 22px; background: var(--surface); border: 1px solid var(--line); box-shadow: var(--shadow); backdrop-filter: blur(12px); animation: float 6s ease-in-out infinite; }
+    .float-card.one { top: 30px; left: 10px; }
+    .float-card.two { bottom: 40px; right: 0; animation-delay: -3s; }
+    .mini-avatar { width: 54px; height: 54px; border-radius: 18px; display: grid; place-items: center; font-weight: 900; font-size: 1.35rem; margin-bottom: 12px; color: var(--text); background: var(--white-gradient); border: 1px solid var(--line); box-shadow: var(--shadow-sm); }
+    .avatar, .mini-avatar { position: relative; overflow: hidden; }
+    .avatar-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border-radius: inherit; }
+    .float-card h3 { margin: 0 0 4px; font-size: 1rem; color: var(--text); }
+    .float-card p { margin: 0; color: var(--muted); font-size: 0.86rem; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-14px); } }
+    .section { padding: 92px 0; }
+    .section.alt { background: linear-gradient(180deg, rgba(248,250,252,0.85), rgba(255,255,255,0.95) 45%, rgba(248,250,252,0.85)); border-block: 1px solid var(--line-soft); }
+    .section-head { text-align: center; max-width: 760px; margin: 0 auto 44px; }
+    .eyebrow { display: inline-block; color: #334155; font-weight: 850; letter-spacing: 0.14em; text-transform: uppercase; font-size: 0.78rem; margin-bottom: 10px; }
+    .section-head h2 { margin: 0 0 12px; font-size: clamp(1.9rem, 4vw, 3rem); line-height: 1.08; letter-spacing: -0.04em; color: var(--text); }
+    .section-head p { margin: 0; color: var(--muted); }
+    .card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); backdrop-filter: blur(12px); }
+    .profile-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+    .profile-card { padding: 28px; }
+    .profile-top { display: flex; gap: 18px; align-items: flex-start; margin-bottom: 28px; }
+    .avatar-column { display: grid; justify-items: center; gap: 10px; flex: none; }
+    .avatar { width: 92px; height: 92px; border-radius: 28px; display: grid; place-items: center; font-size: 2rem; font-weight: 900; color: var(--text); background: var(--white-gradient); border: 1px solid var(--line); box-shadow: var(--shadow); }
+    .avatar-label { font-size: 0.72rem; color: var(--muted); font-weight: 750; white-space: nowrap; }
+    .profile-name h3 { margin: 0; font-size: 1.35rem; color: var(--text); }
+    .profile-name p { margin: 4px 0 0; color: var(--muted); font-size: 0.95rem; }
+    .profile-bio p { color: #1f2937; margin: 0 0 14px; }
+    .info-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin: 18px 0 0; padding: 0; list-style: none; }
+    .info-item { padding: 14px; border-radius: 16px; background: var(--surface-soft); border: 1px solid var(--line-soft); box-shadow: var(--shadow-sm); }
+    .info-item span { display: block; color: var(--muted); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px; font-weight: 700; }
+    .info-item strong { font-size: 0.98rem; color: var(--text); }
+    .edu-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+    .edu-card { padding: 28px; }
+    .edu-card h3 { margin: 0 0 20px; font-size: 1.25rem; color: var(--text); }
+    .timeline { position: relative; padding-left: 26px; }
+    .timeline::before { content: ""; position: absolute; left: 7px; top: 6px; bottom: 6px; width: 2px; background: linear-gradient(180deg, #cbd5e1, #e2e8f0, rgba(226,232,240,0.2)); }
+    .timeline-item { position: relative; margin-bottom: 24px; }
+    .timeline-item:last-child { margin-bottom: 0; }
+    .timeline-item::before { content: ""; position: absolute; left: -26px; top: 6px; width: 16px; height: 16px; border-radius: 50%; background: #fff; border: 3px solid #94a3b8; box-shadow: 0 0 0 5px rgba(148,163,184,0.10); }
+    .timeline-item h4 { margin: 0 0 4px; font-size: 1rem; color: var(--text); }
+    .timeline-item .place { margin: 0 0 8px; color: #334155; font-weight: 850; }
+    .timeline-item p { margin: 0; color: var(--muted); }
+    .hobby-layout { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+    .hobby-block h3 { margin: 0 0 6px; font-size: 1.3rem; color: var(--text); }
+    .hobby-block .subtle { margin: 0 0 18px; color: var(--muted); font-weight: 750; }
+    .hobby-list { display: grid; gap: 16px; }
+    .hobby-card { display: flex; gap: 16px; align-items: flex-start; padding: 20px; border-radius: 20px; background: var(--surface); border: 1px solid var(--line); box-shadow: var(--shadow-sm); transition: 0.25s; }
+    .hobby-card:hover { transform: translateY(-4px); border-color: rgba(15,23,42,0.14); background: var(--surface-strong); box-shadow: var(--shadow); }
+    .hobby-icon { width: 54px; height: 54px; border-radius: 18px; display: grid; place-items: center; font-size: 1.6rem; background: var(--surface-strong); border: 1px solid var(--line-soft); color: var(--text); flex: none; box-shadow: var(--shadow-sm); }
+    .hobby-card h4 { margin: 0 0 6px; font-size: 1.05rem; color: var(--text); }
+    .hobby-card p { margin: 0; color: var(--muted); font-size: 0.96rem; }
+    .quote-section { position: relative; overflow: hidden; }
+    .quote-card { max-width: 900px; margin: 0 auto; padding: 44px; text-align: center; border-radius: 32px; background: var(--white-gradient); border: 1px solid var(--line); box-shadow: var(--shadow); }
+    .quote-mark { font-size: 4rem; line-height: 1; color: rgba(17,24,39,0.16); font-family: Georgia, serif; }
+    .quote-card blockquote { margin: 0; font-size: clamp(1.35rem, 3vw, 2.2rem); line-height: 1.35; font-weight: 850; letter-spacing: -0.03em; color: var(--text); }
+    .quote-card cite { display: block; margin-top: 18px; color: #334155; font-style: normal; font-weight: 850; }
+    .contact-wrap { max-width: 860px; margin: 0 auto; }
+    .contact-card { padding: 34px; }
+    .contact-card h3 { margin: 0 0 10px; font-size: 1.6rem; color: var(--text); }
+    .contact-card > p { color: var(--muted); margin: 0 0 24px; }
+    .contact-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin: 0 0 0; padding: 0; list-style: none; }
+    .contact-list li { display: flex; justify-content: space-between; gap: 12px; padding: 14px 16px; border-radius: 16px; background: var(--surface-soft); border: 1px solid var(--line-soft); box-shadow: var(--shadow-sm); }
+    .contact-list span { color: var(--muted); }
+    .contact-list strong { text-align: right; color: var(--text); }
+    .footer { padding: 28px 0 40px; border-top: 1px solid var(--line); background: linear-gradient(180deg, #ffffff, #f8fafc); color: var(--muted); text-align: center; }
+    .footer strong { color: var(--text); }
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+    @media (max-width: 980px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .hero-visual { order: -1; min-height: 380px; }
+      .glow-ring { width: 300px; height: 300px; }
+      .float-card { width: 150px; }
+      .profile-grid, .edu-grid, .hobby-layout { grid-template-columns: 1fr; }
+      .contact-list { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 760px) {
+      .menu-toggle { display: grid; place-items: center; }
+      .nav-menu { position: absolute; top: 72px; left: 16px; right: 16px; display: grid; gap: 6px; padding: 14px; border-radius: 22px; background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(248,250,252,0.96)); border: 1px solid var(--line); box-shadow: var(--shadow); opacity: 0; visibility: hidden; transform: translateY(-10px); transition: 0.25s; }
+      .nav-menu.open { opacity: 1; visibility: visible; transform: none; }
+      .nav-menu a { width: 100%; }
+      .hero { padding-top: 120px; min-height: auto; }
+      .stats { grid-template-columns: 1fr; }
+      .profile-top { flex-direction: column; align-items: flex-start; }
+      .avatar { width: 82px; height: 82px; }
+      .info-grid { grid-template-columns: 1fr; }
+      .quote-card { padding: 28px; }
+      .contact-card { padding: 24px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#konten">Lewati ke konten</a>
+
+  <header class="navbar" id="navbar">
+    <div class="container nav-inner">
+      <a class="brand" href="#beranda">
+        <span class="brand-mark">AH</span>
+        <span>Azie &amp; Hafiz</span>
+      </a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Buka menu navigasi" aria-controls="navMenu" aria-expanded="false">☰</button>
+      <nav class="nav-menu" id="navMenu" aria-label="Navigasi utama">
+        <a href="#beranda">Beranda</a>
+        <a href="#profil">Profil</a>
+        <a href="#pendidikan">Pendidikan</a>
+        <a href="#hobi">Hobi</a>
+        <a href="#motivasi">Motivasi</a>
+        <a href="#kontak">Kontak</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="konten">
+    <section class="hero" id="beranda">
+      <div class="container hero-grid">
+        <div class="hero-copy reveal">
+          <span class="badge">Portofolio • Biografi Personal</span>
+          <h1><span class="gradient-text">HALO, SELAMAT DATANG!</span></h1>
+          <p class="lead">kita Azie &amp; Hafiz</p>
+          <p class="institution">Mahasiswa Teknik Informatika TAU</p>
+          <p class="desc">Selamat datang di website biografi pribadi kita berdua. Di sini kamu bisa mengenal saya dan teman saya lebih dekat, mulai dari profil, pendidikan, hingga hobi dan cita-cita.</p>
+          <div class="action-row">
+            <a href="#profil" class="btn btn-primary">Kenali Saya</a>
+            <a href="#pendidikan" class="btn btn-secondary">Lihat Perjalanan Belajar</a>
+          </div>
+          <div class="stats">
+            <div class="stat"><strong>2</strong><span>Mahasiswa</span></div>
+            <div class="stat"><strong>TI</strong><span>Teknik Informatika</span></div>
+            <div class="stat"><strong>15</strong><span>Batch TAU</span></div>
+          </div>
+        </div>
+        <div class="hero-visual reveal" aria-hidden="true">
+          <div class="glow-ring"></div>
+          <article class="float-card one">
+            <div class="mini-avatar">
+              <img class="avatar-img" data-name="hafiz" src="hafiz.jpg" alt="Foto Hafiz Syadi Ismallah" onerror="this.style.display='none';this.dataset.failed='1';">
+              <span class="avatar-fallback">H</span>
+            </div>
+            <h3>Hafiz Syadi Ismallah</h3>
+            <p>NIM 06026005</p>
+          </article>
+          <article class="float-card two">
+            <div class="mini-avatar">
+              <img class="avatar-img" data-name="azie" src="azie.jpg" alt="Foto Ramadhan Setia Azie" onerror="this.style.display='none';this.dataset.failed='1';">
+              <span class="avatar-fallback">A</span>
+            </div>
+            <h3>Ramadhan Setia Azie</h3>
+            <p>NIM 06026004</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="profil" class="section">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Profil</span>
+          <h2>PROFIL PRIBADI</h2>
+          <p>Perkenalan singkat dari Hafiz dan Azie sebagai mahasiswa Teknik Informatika Tanri Abeng University.</p>
+        </div>
+        <div class="profile-grid">
+          <article class="card profile-card reveal">
+            <div class="profile-top">
+              <div class="avatar-column">
+                <div class="avatar">
+                  <img class="avatar-img" data-name="hafiz" src="hafiz.jpg" alt="Foto Hafiz Syadi Ismallah" onerror="this.style.display='none';this.dataset.failed='1';">
+                  <span class="avatar-fallback">H</span>
+                </div>
+                <span class="avatar-label">Foto Pribadi</span>
+              </div>
+              <div class="profile-name">
+                <h3>Hafiz Syadi Ismallah</h3>
+                <p>Mahasiswa TAU • Teknik Informatika • Batch 15</p>
+              </div>
+            </div>
+            <div class="profile-bio">
+              <p>HALOO semua! Perkenalkan, nama saya Hafiz Syadi Ismallah. Saya adalah mahasiswa TAU jurusan Teknik Informatika BATCH 15 yang memiliki ketertarikan pada dunia teknologi dan komputer.</p>
+              <p>Saya ingin terus belajar, menambah pengalaman, dan mengembangkan kemampuan di bidang teknologi informasi. Bagi saya, setiap proses belajar merupakan kesempatan untuk menjadi pribadi yang lebih baik.</p>
+            </div>
+            <ul class="info-grid">
+              <li class="info-item"><span>Nama Lengkap</span><strong>Hafiz Syadi Ismallah</strong></li>
+              <li class="info-item"><span>NIM</span><strong>06026005</strong></li>
+              <li class="info-item"><span>Jurusan</span><strong>Teknik Informatika</strong></li>
+              <li class="info-item"><span>Status</span><strong>Mahasiswa TAU</strong></li>
+            </ul>
+          </article>
+          <article class="card profile-card reveal">
+            <div class="profile-top">
+              <div class="avatar-column">
+                <div class="avatar">
+                  <img class="avatar-img" data-name="azie" src="azie.jpg" alt="Foto Ramadhan Setia Azie" onerror="this.style.display='none';this.dataset.failed='1';">
+                  <span class="avatar-fallback">A</span>
+                </div>
+                <span class="avatar-label">Foto Pribadi</span>
+              </div>
+              <div class="profile-name">
+                <h3>Ramadhan Setia Azie</h3>
+                <p>Mahasiswa TAU • Teknik Informatika • Batch 15</p>
+              </div>
+            </div>
+            <div class="profile-bio">
+              <p>HALOO semua! Perkenalkan, nama saya Ramadhan Setia Azie. Saya adalah mahasiswa TAU jurusan Teknik Informatika BATCH 15 yang memiliki ketertarikan pada dunia teknologi dan komputer.</p>
+              <p>Saya ingin terus belajar, menambah pengalaman, dan mengembangkan kemampuan di bidang teknologi informasi. Bagi saya, setiap proses belajar merupakan kesempatan untuk menjadi pribadi yang lebih baik.</p>
+            </div>
+            <ul class="info-grid">
+              <li class="info-item"><span>Nama Lengkap</span><strong>Ramadhan Setia Azie</strong></li>
+              <li class="info-item"><span>NIM</span><strong>06026004</strong></li>
+              <li class="info-item"><span>Jurusan</span><strong>Teknik Informatika</strong></li>
+              <li class="info-item"><span>Status</span><strong>Mahasiswa TAU</strong></li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="pendidikan" class="section alt">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Pendidikan</span>
+          <h2>PERJALANAN BELAJAR</h2>
+          <p>Riwayat pendidikan dan alasan memilih Teknik Informatika dari Hafiz dan Azie.</p>
+        </div>
+        <div class="edu-grid">
+          <article class="card edu-card reveal">
+            <h3>Pendidikan Hafiz Syadi Ismallah</h3>
+            <div class="timeline">
+              <div class="timeline-item">
+                <h4>Asal Sekolah</h4>
+                <p class="place">SMA 63 Jakarta</p>
+                <p>Saya menempuh pendidikan SMA awal tahun 2023/2025 sebagai dasar untuk memperoleh ilmu dan pengalaman. Jurusan yang saya pilih adalah jurusan informatika, mencakup materi dan pembelajaran teknologi pada era sekarang seperti desain, coding, editing video, dan juga membuat web.</p>
+              </div>
+              <div class="timeline-item">
+                <h4>Saat Ini</h4>
+                <p class="place">Berkuliah di Tanri Abeng University</p>
+                <p>Alasan saya melanjutkan pendidikan kuliah di bidang Teknik Informatika TAU adalah untuk mempelajari komponen-komponen komputer, pemrograman, dan teknologi informasi, sekaligus mengasah kemampuan saya di bidang tersebut.</p>
+              </div>
+            </div>
+          </article>
+          <article class="card edu-card reveal">
+            <h3>Pendidikan Ramadhan Setia Azie</h3>
+            <div class="timeline">
+              <div class="timeline-item">
+                <h4>Asal Sekolah</h4>
+                <p class="place">SMKN 7 GARUT</p>
+                <p>Saya menempuh pendidikan SMK awal tahun 2023/2026 sebagai dasar saya ingin menceritakan perjalanan pendidikan, ketertarikan, serta keinginan saya untuk terus berkembang di era digital. Saya percaya bahwa latar belakang pendidikan TKJ dan pengetahuan teknologi dapat saling melengkapi. Dengan semangat belajar, kreativitas, dan kemauan untuk mencoba hal baru, saya berharap dapat memanfaatkan teknologi secara positif serta meraih cita-cita di masa depan.</p>
+              </div>
+              <div class="timeline-item">
+                <h4>Saat Ini</h4>
+                <p class="place">Teknik Informatika</p>
+                <p>Alasan saya melanjutkan pendidikan di bidang Teknik Informatika karena ingin mempelajari komponen-komponen komputer, pemrograman coding web, dan teknologi informasi yang terus berkembang.</p>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="hobi" class="section">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Minat</span>
+          <h2>HOBI &amp; MINAT</h2>
+          <p>Hal-hal yang disukai Hafiz dan Azie di luar kegiatan akademik.</p>
+        </div>
+        <div class="hobby-layout">
+          <div class="hobby-block reveal">
+            <h3>HAL YANG Hafiz SUKAI</h3>
+            <p class="subtle">Hobi &amp; Minat</p>
+            <div class="hobby-list">
+              <article class="hobby-card"><div class="hobby-icon">💻</div><div><h4>Belajar Coding</h4><p>Kenapa saya menggemari coding karena suka membuat sesuatu dari software.</p></div></article>
+              <article class="hobby-card"><div class="hobby-icon">🌐</div><div><h4>Web Development</h4><p>Belajar membuat website menggunakan HTML, CSS, dan JS.</p></div></article>
+              <article class="hobby-card"><div class="hobby-icon">🎮</div><div><h4>Game</h4><p>Saya gemar bermain game War Thunder Mobile, PUBG Mobile, Roblox, dan game lainnya.</p></div></article>
+            </div>
+          </div>
+          <div class="hobby-block reveal">
+            <h3>HAL YANG Azie SUKAI</h3>
+            <p class="subtle">Hobi &amp; Minat</p>
+            <div class="hobby-list">
+              <article class="hobby-card"><div class="hobby-icon">⚽️</div><div><h4>Olahraga</h4><p>Saya suka berolahraga sepakbola/futsal untuk kesehatan secara teratur.</p></div></article>
+              <article class="hobby-card"><div class="hobby-icon">🏐</div><div><h4>Voli</h4><p>Saya suka voli, saya suka olahraga baru yang menarik.</p></div></article>
+              <article class="hobby-card"><div class="hobby-icon">🎞️</div><div><h4>Film</h4><p>Saya suka menonton film yang menarik dan menjelajahi hiburan digital lainnya.</p></div></article>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="motivasi" class="section quote-section">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Motivasi</span>
+          <h2>MOTIVASI HIDUP</h2>
+        </div>
+        <div class="quote-card reveal">
+          <div class="quote-mark">“</div>
+          <blockquote>Teruslah belajar, dan terus berkembang, dan jangan pernah berhenti mencoba dan jangan mudah menyerah.</blockquote>
+          <cite>— Hafiz &amp; Azie</cite>
+        </div>
+      </div>
+    </section>
+
+    <section id="kontak" class="section alt">
+      <div class="container contact-wrap">
+        <div class="section-head reveal">
+          <span class="eyebrow">Kontak</span>
+          <h2>HUBUNGI SAYA</h2>
+          <p>Kontak Saya</p>
+        </div>
+        <div class="card contact-card reveal">
+          <h3>Kontak Saya</h3>
+          <p>Terima kasih telah mengunjungi website biografi kami. Senang bisa berbagi sedikit cerita tentang diri kami.</p>
+          <div class="action-row">
+            <a href="#beranda" class="btn btn-secondary">Kembali ke Atas</a>
+          </div>
+          <ul class="contact-list">
+            <li><span>Hafiz Syadi Ismallah</span><strong>06026005</strong></li>
+            <li><span>Ramadhan Setia Azie</span><strong>06026004</strong></li>
+            <li><span>Institusi</span><strong>Tanri Abeng University</strong></li>
+            <li><span>Program</span><strong>Teknik Informatika — Batch 15</strong></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>© <span id="year"></span> <strong>Azie &amp; Hafiz</strong> — Portofolio Biografi Teknik Informatika TAU.</p>
+    </div>
+  </footer>
+
+  <!-- Script 1: navigasi & animasi (jika suatu hari rusak, foto TETAP aman karena script terpisah) -->
+  <script>
+    const navbar = document.getElementById("navbar");
+    const menuToggle = document.getElementById("menuToggle");
+    const navMenu = document.getElementById("navMenu");
+
+    menuToggle.addEventListener("click", () => {
+      const isOpen = navMenu.classList.toggle("open");
+      menuToggle.setAttribute("aria-expanded", isOpen);
+      menuToggle.textContent = isOpen ? "✕" : "☰";
+    });
+    navMenu.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        navMenu.classList.remove("open");
+        menuToggle.setAttribute("aria-expanded", "false");
+        menuToggle.textContent = "☰";
+      });
+    });
+    window.addEventListener("scroll", () => {
+      navbar.classList.toggle("scrolled", window.scrollY > 12);
+    });
+
+    const reveals = document.querySelectorAll(".reveal");
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
+    reveals.forEach((el) => revealObserver.observe(el));
+
+    const sections = document.querySelectorAll("main section[id]");
+    const navLinks = [...document.querySelectorAll(".nav-menu a")];
+    const activeSectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const id = entry.target.id;
+          navLinks.forEach((link) => link.classList.toggle("active", link.getAttribute("href") === `#${id}`));
+        }
+      });
+    }, { threshold: 0.35 });
+    sections.forEach((section) => activeSectionObserver.observe(section));
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+
+  <!-- Script 2: KHUSUS foto. Terpisah supaya tidak bisa "tertular" rusak oleh kode lain. -->
+  <script>
+    (function () {
+      const EXT = ["jpg", "jpeg", "png", "webp"];
+      function candidates(name) {
+        const bases = [name, name.charAt(0).toUpperCase() + name.slice(1)];
+        const out = [];
+        bases.forEach((b) => EXT.forEach((e) => out.push(b + "." + e)));
+        bases.forEach((b) => EXT.forEach((e1) => EXT.forEach((e2) => out.push(b + "." + e1 + "." + e2))));
+        out.push("WhatsApp Image 2026-10-19 at 22.58.43.jpeg");
+        out.push("WhatsApp Image 2026-10-19 at 22.58.43.jpg");
+        return out;
+      }
+      function tryCandidates(img) {
+        if (img.dataset.handled === "1") return;
+        img.dataset.handled = "1";
+        const list = candidates(img.dataset.name);
+        let i = 0;
+        (function next() {
+          if (i >= list.length) {
+            console.warn(`%c[foto] "${img.dataset.name}" belum ketemu di folder.`, "color:#b45309;font-weight:bold");
+            return;
+          }
+          const url = encodeURI(list[i]);
+          const probe = new Image();
+          probe.onload = () => {
+            img.onerror = null;
+            img.src = url;
+            img.style.display = "block";
+            console.log(`%c[foto] OK -> ${img.dataset.name}: ${url}`, "color:#15803d;font-weight:bold");
+          };
+          probe.onerror = () => { i++; next(); };
+          probe.src = url;
+        })();
+      }
+      document.querySelectorAll("img.avatar-img").forEach((img) => {
+        if (img.dataset.failed === "1" || (img.complete && img.naturalWidth === 0)) {
+          tryCandidates(img);
+        } else if (!img.complete) {
+          img.addEventListener("error", () => tryCandidates(img), { once: true });
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
