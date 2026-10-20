@@ -130,7 +130,7 @@
     .contact-card { padding: 34px; }
     .contact-card h3 { margin: 0 0 10px; font-size: 1.6rem; color: var(--text); }
     .contact-card > p { color: var(--muted); margin: 0 0 24px; }
-    .contact-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin: 0 0 0; padding: 0; list-style: none; }
+    .contact-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin: 0; padding: 0; list-style: none; }
     .contact-list li { display: flex; justify-content: space-between; gap: 12px; padding: 14px 16px; border-radius: 16px; background: var(--surface-soft); border: 1px solid var(--line-soft); box-shadow: var(--shadow-sm); }
     .contact-list span { color: var(--muted); }
     .contact-list strong { text-align: right; color: var(--text); }
@@ -406,7 +406,7 @@
     </div>
   </footer>
 
-  <!-- Script 1: navigasi & animasi (jika suatu hari rusak, foto TETAP aman karena script terpisah) -->
+  <!-- Script 1: navigasi & animasi -->
   <script>
     const navbar = document.getElementById("navbar");
     const menuToggle = document.getElementById("menuToggle");
@@ -454,7 +454,7 @@
     document.getElementById("year").textContent = new Date().getFullYear();
   </script>
 
-  <!-- Script 2: KHUSUS foto. Terpisah supaya tidak bisa "tertular" rusak oleh kode lain. -->
+  <!-- Script 2: KHUSUS foto (terpisah supaya tidak tertular rusak oleh kode lain) -->
   <script>
     (function () {
       const EXT = ["jpg", "jpeg", "png", "webp"];
